@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOCARE Diagnostics Technologies | Healthcare IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #004c99;
+            --light-blue: #3399ff;
+            --accent-blue: #00aaff;
+            --dark-bg: #0a1628;
+            --darker-bg: #05101f;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 22, 40, 0.98);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(10, 22, 40, 1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: white;
+            padding: 180px 3rem 120px;
+            text-align: center;
+            margin-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(0,102,204);stop-opacity:0.1" /><stop offset="100%" style="stop-color:rgb(0,170,255);stop-opacity:0.05" /></linearGradient></defs><circle cx="200" cy="150" r="80" fill="url(%23grad1)"/><circle cx="900" cy="600" r="120" fill="url(%23grad1)"/><circle cx="1100" cy="200" r="60" fill="url(%23grad1)"/><path d="M 100 400 Q 300 300, 500 400 T 900 400" stroke="rgba(0,170,255,0.1)" stroke-width="2" fill="none"/><path d="M 200 600 Q 400 500, 600 600 T 1000 600" stroke="rgba(0,102,204,0.1)" stroke-width="2" fill="none"/></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 170, 255, 0.2);
+            border: 1px solid rgba(0, 170, 255, 0.4);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #b3d9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.4);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            box-shadow: none;
+        }
+
+        .cta-button-secondary:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--primary-blue);
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff, #b3d9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 2rem auto 4rem;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.8), rgba(0, 170, 255, 0.6)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%230066cc" width="800" height="600"/><g fill="white" opacity="0.1"><circle cx="150" cy="150" r="100"/><circle cx="650" cy="450" r="150"/><rect x="300" y="200" width="200" height="200" rx="20"/><path d="M 100 400 L 300 500 L 500 400 L 700 500" stroke="white" stroke-width="3" fill="none"/></g><text x="400" y="300" font-family="Arial" font-size="120" fill="white" opacity="0.15" text-anchor="middle">LIS</text></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-highlight {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+        }
+
+        .about-highlight h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .about-highlight ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-highlight li {
+            padding: 0.8rem 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            line-height: 1.6;
+        }
+
+        .about-highlight li:before {
+            content: "✓";
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Technology Stack */
+        .tech-stack {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 4rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.15);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        #services {
+            background: white;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .service-features li::before {
+            content: '→';
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(0,102,204);stop-opacity:0.1" /><stop offset="100%" style="stop-color:rgb(0,170,255);stop-opacity:0.05" /></linearGradient></defs><rect x="100" y="200" width="300" height="200" rx="20" fill="url(%23grad2)"/><rect x="800" y="400" width="250" height="180" rx="20" fill="url(%23grad2)"/><circle cx="600" cy="150" r="60" fill="url(%23grad2)"/></svg>');
+            background-size: cover;
+            opacity: 0.4;
+        }
+
+        .process-section h2 {
+            color: white;
+        }
+
+        .process-section h2::after {
+            background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.5));
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-number {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+
+        .process-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .process-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process-content p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Goals Section */
+        #goals {
+            background: var(--bg-light);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .goal-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .goal-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-blue), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .goal-item:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .goal-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 50px rgba(0, 102, 204, 0.15);
+        }
+
+        .goal-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-number {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .goal-icon {
+            font-size: 1.8rem;
+        }
+
+        .goal-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(0,102,204);stop-opacity:0.15" /><stop offset="100%" style="stop-color:rgb(0,170,255);stop-opacity:0.08" /></linearGradient></defs><path d="M0,200 Q300,100 600,200 T1200,200 L1200,600 L0,600 Z" fill="url(%23grad3)"/></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        #contact h2::after {
+            background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.5));
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+        }
+
+        .footer-section p,
+        .footer-section li {
+            opacity: 0.8;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column !important;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 140px 1.5rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .services-grid,
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">BC</div>
+                <span>BIOCARE</span>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 HEALTHCARE INNOVATION</div>
+            <h1>BIOCARE Diagnostics Technologies</h1>
+            <p>Transforming Healthcare Through Innovative Software Solutions for Medical Laboratories and Diagnostic Centers</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Schedule Consultation</a>
+                <a href="#services" class="cta-button cta-button-secondary">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Data Integrity</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Technical Support</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number">GDPR</div>
+                <div class="stat-label">Fully Compliant</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="animate-on-scroll">About BIOCARE</h2>
+            <p class="section-subtitle animate-on-scroll">A multidisciplinary team of innovators transforming healthcare through cutting-edge technology</p>
+            
+            <div class="about-content">
+                <div class="about-image animate-on-scroll"></div>
+                
+                <div class="about-text animate-on-scroll">
+                    <h3>Pioneering Healthcare IT Solutions</h3>
+                    <p>BIOCARE Diagnostics Technologies represents the convergence of medical expertise and technological innovation. Founded by a distinguished team of computer engineers and biomedical specialists, we specialize in developing sophisticated software solutions for medical laboratories and diagnostic centers.</p>
+                    
+                    <p>Our strategic location near the Ciudad Real General University Hospital provides us with invaluable insights into the real-world challenges faced by healthcare institutions, enabling us to deliver solutions that truly address the needs of modern medical facilities.</p>
+                    
+                    <div class="about-highlight">
+                        <h4>Our Competitive Advantages</h4>
+                        <ul>
+                            <li>Multidisciplinary team combining engineering excellence with biomedical expertise</li>
+                            <li>Proven academic and professional experience in clinical information systems</li>
+                            <li>Strategic investment from private equity funds specialized in healthcare innovation</li>
+                            <li>State-of-the-art facilities positioned at the heart of medical innovation</li>
+                            <li>Unwavering commitment to data security, integrity, and regulatory compliance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack animate-on-scroll">
+                <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 1rem;">Technology Excellence</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-icon">☁️</div>
+                        <div class="tech-name">Cloud Infrastructure</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔒</div>
+                        <div class="tech-name">Advanced Security</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📊</div>
+                        <div class="tech-name">Data Analytics</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔄</div>
+                        <div class="tech-name">Real-time Sync</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🌐</div>
+                        <div class="tech-name">Web-based Access</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📱</div>
+                        <div class="tech-name">Mobile Compatible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="animate-on-scroll">Our Solutions</h2>
+            <p class="section-subtitle animate-on-scroll">Comprehensive software ecosystem designed to optimize every aspect of laboratory operations</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🔬</div>
+                    <h3>Laboratory Information Systems (LIS)</h3>
+                    <p>Enterprise-grade platforms for complete laboratory workflow management, from sample intake to result delivery.</p>
+                    <ul class="service-features">
+                        <li>Automated sample registration and tracking</li>
+                        <li>Real-time analysis monitoring</li>
+                        <li>Multi-level result validation</li>
+                        <li>Quality control integration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🔐</div>
+                    <h3>Diagnostic Results Management</h3>
+                    <p>Secure, GDPR-compliant platforms for storing and delivering sensitive diagnostic information to authorized personnel.</p>
+                    <ul class="service-features">
+                        <li>End-to-end encryption</li>
+                        <li>Role-based access control</li>
+                        <li>Audit trail compliance</li>
+                        <li>Patient portal integration</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">📈</div>
+                    <h3>Medical Data Analytics</h3>
+                    <p>Advanced business intelligence tools providing actionable insights for quality improvement and operational excellence.</p>
+                    <ul class="service-features">
+                        <li>Performance KPI dashboards</li>
+                        <li>Epidemiological trend analysis</li>
+                        <li>Predictive quality metrics</li>
+                        <li>Custom report generation</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">☁️</div>
+                    <h3>Flexible Hosting Solutions</h3>
+                    <p>Tailored infrastructure options designed to meet your specific security, performance, and budget requirements.</p>
+                    <ul class="service-features">
+                        <li>On-premises deployment</li>
+                        <li>BIOCARE managed hosting</li>
+                        <li>Certified third-party cloud</li>
+                        <li>Hybrid architecture support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="animate-on-scroll">Our Implementation Process</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">A proven methodology ensuring seamless integration and optimal results</p>
+            
+            <div class="process-timeline">
+                <div class="process-step animate-on-scroll">
+                    <div class="process-number">1</div>
+                    <div class="process-content">
+                        <h3>Discovery & Analysis</h3>
+                        <p>Comprehensive assessment of your current workflows, pain points, and strategic objectives to design the optimal solution architecture.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="process-number">2</div>
+                    <div class="process-content">
+                        <h3>Custom Development</h3>
+                        <p>Agile development process with continuous stakeholder engagement, ensuring the solution evolves with your requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="process-number">3</div>
+                    <div class="process-content">
+                        <h3>Testing & Validation</h3>
+                        <p>Rigorous quality assurance including functionality testing, security audits, and regulatory compliance verification.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step animate-on-scroll">
+                    <div class="process-number">4</div>
+                    <div class="process-content">
+                        <h3>Deployment & Training</h3>
+                        <p>Phased rollout with comprehensive user training, documentation, and dedicated support during the transition period.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section id="goals">
+        <div class="container">
+            <h2 class="animate-on-scroll">Strategic Business Goals</h2>
+            <p class="section-subtitle animate-on-scroll">Our unwavering commitment to excellence drives every decision and innovation</p>
+            
+            <div class="goals-grid">
+                <div class="goal-item animate-on-scroll">
+                    <div class="goal-header">
+                        <span class="goal-number">BG1</span>
+                        <span class="goal-icon">🎯</span>
+                    </div>
+                    <p>Ensure the accuracy and integrity of diagnostic data through multi-layered validation protocols and continuous quality monitoring</p>
+                </div>
+                
+                <div class="goal-item animate-on-scroll">
+                    <div class="goal-header">
+                        <span class="goal-number">BG2</span>
+                        <span class="goal-icon">⚡</span>
+                    </div>
+                    <p>Minimize system downtime and service interruptions through redundant architecture, proactive monitoring, and rapid incident response</p>
+                </div>
+                
+                <div class="goal-item animate-on-scroll">
+                    <div class="goal-header">
+                        <span class="goal-number">BG3</span>
+                        <span class="goal-icon">💰</span>
+                    </div>
+                    <p>Reduce operational costs while maintaining data security through efficient resource utilization and automated workflows</p>
+                </div>
+                
+                <div class="goal-item animate-on-scroll">
+                    <div class="goal-header">
+                        <span class="goal-number">BG4</span>
+                        <span class="goal-icon">📋</span>
+                    </div>
+                    <p>Comply with healthcare data protection and quality regulations including GDPR, ISO standards, and local healthcare directives</p>
+                </div>
+                
+                <div class="goal-item animate-on-scroll">
+                    <div class="goal-header">
+                        <span class="goal-number">BG5</span>
+                        <span class="goal-icon">🔄</span>
+                    </div>
+                    <p>Provide continuous and reliable access to diagnostic results through high-availability infrastructure and disaster recovery protocols</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="animate-on-scroll">Let's Transform Your Laboratory</h2>
+            <div class="contact-content">
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-bottom: 3rem;">Partner with BIOCARE to modernize your diagnostic infrastructure and deliver superior patient care</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">📍</div>
+                        <h3>Our Location</h3>
+                        <p>Strategic positioning near Ciudad Real General University Hospital<br><strong>Ciudad Real, Castille-La Mancha, Spain</strong></p>
+                    </div>
+                    
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">🏥</div>
+                        <h3>Healthcare Focus</h3>
+                        <p>Specialized in Healthcare IT<br><strong>Medical Laboratory Software & Diagnostic Solutions</strong></p>
+                    </div>
+                    
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">💼</div>
+                        <h3>Business Inquiries</h3>
+                        <p>Connect with our executive team<br><strong>Consultations & Partnership Opportunities</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BIOCARE Technologies</h3>
+                <p>Leading the digital transformation of medical laboratories and diagnostic centers through innovative, secure, and compliant software solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Solutions</h3>
+                <ul>
+                    <li><a href="#services">Laboratory Information Systems</a></li>
+                    <li><a href="#services">Results Management</a></li>
+                    <li><a href="#services">Data Analytics</a></li>
+                    <li><a href="#services">Hosting Services</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#goals">Business Goals</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Compliance</h3>
+                <ul>
+                    <li>GDPR Compliant</li>
+                    <li>ISO 27001 Standards</li>
+                    <li>Healthcare Data Protection</li>
+                    <li>Quality Assurance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 BIOCARE Diagnostics Technologies. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
